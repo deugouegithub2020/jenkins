@@ -16,6 +16,7 @@ pipeline {
                 script {
                     echo "Testing application"
                     currentBuild.description = "Build #${env.BUILD_NUMBER} - Triggered by Jenkins Pipeline"
+                    currentBuild.displayName = "#${env.BUILD_NUMBER} - CustomName"
                 }
             }
         }
