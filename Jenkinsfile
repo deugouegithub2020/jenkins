@@ -1,5 +1,8 @@
 pipeline {
     agent any 
+    environment {
+        VERSION = "1.3.0"
+    }
     stages {
         stage ("build") {
             when {
@@ -15,6 +18,7 @@ pipeline {
             steps {
                 script {
                     echo "Testing application"
+                    echo "We are Testing version ${VERSION}"
                     currentBuild.description = "Build #${env.BUILD_NUMBER} - Triggered by Jenkins Pipeline"
                     currentBuild.displayName = "#${env.BUILD_NUMBER} - #${env.GIT_COMMITTER_NAME}"
                 }
