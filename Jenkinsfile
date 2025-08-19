@@ -2,8 +2,13 @@ pipeline {
     agent any 
     stages {
         stage ("build") {
+            when {
+                expression {
+                    BRANCH_NAME == 'pr'
+                }
+            }
             steps {
-                echo 'testing application'
+                echo 'building application'
             }
         }
         stage ("test") {
@@ -13,7 +18,7 @@ pipeline {
         }
         stage ("deploy") {
             steps {
-                echo 'Testing application'
+                echo 'deploying application'
             }
         }
    }
