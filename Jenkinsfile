@@ -13,7 +13,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'deugouegithub2020', 
                                                  usernameVariable: 'GIT_USER', 
                                                  passwordVariable: 'GIT_PASS')]) {
-                    sh 'git clone https://${GIT_USER}:${GIT_PASS}@github.com/deugouegithub2020/jenkins.git'
+                    sh 'git clone https://${GIT_USER}:${GIT_PASS}@github.com/deugouegithub2020/jenkins.git serges'
                 }
             }
         }
