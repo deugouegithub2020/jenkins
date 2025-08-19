@@ -13,8 +13,10 @@ pipeline {
         }
         stage ("test") {
             steps {
-                echo "Testing application"
-                currentBuild.description = "Build #${env.BUILD_NUMBER} - Triggered by Jenkins Pipeline"
+                script {
+                    echo "Testing application"
+                    currentBuild.description = "Build #${env.BUILD_NUMBER} - Triggered by Jenkins Pipeline"
+                }
             }
         }
         stage ("deploy") {
