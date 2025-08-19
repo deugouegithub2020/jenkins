@@ -1,8 +1,8 @@
 pipeline {
     agent any 
-    tools {
+    /* tools {
         maven 'Maven'
-    }
+    } */
     environment {
         VERSION = "1.3.0"
         SERVER_CREDENTIALS = credentials ('deugoue_jenkins')
