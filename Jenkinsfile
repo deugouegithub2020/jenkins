@@ -16,6 +16,7 @@ pipeline {
                 echo 'Testing application'
             }
         }
+   }
         post {
             always {
                 echo 'just ran the first pipeline'
@@ -27,5 +28,4 @@ pipeline {
                 echo 'the pipeline failed'
             }
         }
-   }
 }
