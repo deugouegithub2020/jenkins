@@ -30,11 +30,11 @@ pipeline {
         stage ("test") {
             steps {
                 script {
-                    echo "Testing with ${SERVER_CREDENTIALS}"
+                    /* echo "Testing with ${SERVER_CREDENTIALS}" */
                     echo "We are Testing version ${VERSION}"
                     currentBuild.description = "Build #${env.BUILD_NUMBER} - Triggered by Jenkins Pipeline"
                     currentBuild.displayName = "#${env.BUILD_NUMBER} - #${env.GIT_COMMITTER_NAME}"
-                    sh "mvn install"
+                    /* sh "mvn install" */
                     
                 }
             }
