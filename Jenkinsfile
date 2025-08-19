@@ -27,7 +27,7 @@ pipeline {
                 echo 'just ran the first pipeline'
             }
             success {
-                echo 'the build #${env.BUILD_NUMBER} ran successfully'
+                echo "the build #${env.BUILD_NUMBER} ran successfully"
             }
             failure {
                 echo 'the pipeline failed'
