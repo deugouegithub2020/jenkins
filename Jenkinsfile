@@ -31,7 +31,7 @@ pipeline {
                 echo "just ran the first pipeline"
             }
             success {
-                echo "the build #${env.BUILD_NUMBER} ran successfully. It was committed by #${GIT_COMMITTER_NAME} "
+                echo "the build #${env.BUILD_NUMBER} ran successfully. It was committed by #${GIT_COMMITTER_NAME}"
             }
             failure {
                 echo "the pipeline failed"
