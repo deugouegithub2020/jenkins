@@ -8,29 +8,30 @@ pipeline {
                 }
             }
             steps {
-                echo 'building application'
+                echo "building application"
             }
         }
         stage ("test") {
             steps {
-                echo 'Testing application'
+                echo "Testing application"
+                currentBuild.description = "Build #${env.BUILD_NUMBER} - Triggered by Jenkins Pipeline"
             }
         }
         stage ("deploy") {
             steps {
-                echo 'deploying application'
+                echo "deploying application"
             }
         }
    }
         post {
             always {
-                echo 'just ran the first pipeline'
+                echo "just ran the first pipeline"
             }
             success {
                 echo "the build #${env.BUILD_NUMBER} ran successfully"
             }
             failure {
-                echo 'the pipeline failed'
+                echo "the pipeline failed"
             }
         }
 }
