@@ -10,6 +10,8 @@ pipeline {
     stages {
         stage ("checkout") {
             steps {
+                sh 'pwd'
+                sh 'ls -ltra'
                 sh 'rm -rf serges && mkdir -p serges'
                 withCredentials([usernamePassword(credentialsId: 'deugouegithub2020', 
                                                  usernameVariable: 'GIT_USER', 
