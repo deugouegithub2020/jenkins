@@ -2,7 +2,7 @@ pipeline {
     agent any 
     environment {
         VERSION = "1.3.0"
-        SERVER_CREDENTIALS = credentials ('jenkins-github-creds')
+        SERVER_CREDENTIALS = credentials ('github-jenkins-creds')
     }
     stages {
         stage ("checkout") {
@@ -10,7 +10,7 @@ pipeline {
                 sh 'pwd'
                 sh 'ls -ltra'
                 sh 'rm -rf serges && mkdir -p serges'
-                withCredentials([usernamePassword(credentialsId: 'jenkins-github-creds', 
+                withCredentials([usernamePassword(credentialsId: 'github-jenkins-creds', 
                                                  usernameVariable: 'GIT_USER', 
                                                  passwordVariable: 'GIT_PASS')]) {
                     sh 'git clone -b dev https://${GIT_USER}:${GIT_PASS}@github.com/deugouegithub2020/jenkins.git serges'
