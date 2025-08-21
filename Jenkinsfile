@@ -5,8 +5,7 @@ pipeline {
     }
 
    environment {
-         /* VERSION = "1.3.0"
-        SERVER_CREDENTIALS = credentials ('github-jenkins-creds') */
+      SERVER_CREDENTIALS = credentials ('github-jenkins-creds')
     }
     stages {
         stage ("checkout") {
@@ -18,7 +17,7 @@ pipeline {
                                                  usernameVariable: 'GIT_USER', 
                                                  passwordVariable: 'GIT_PASS')]) {
                     sh 'git clone -b dev https://${GIT_USER}:${GIT_PASS}@github.com/deugouegithub2020/jenkins.git serges'
-                }
+                    }
             }
         }
         stage ("build") {
