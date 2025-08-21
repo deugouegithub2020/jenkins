@@ -1,8 +1,5 @@
 pipeline {
     agent any 
-    /* tools {
-        maven 'Maven'
-    } */
     environment {
         VERSION = "1.3.0"
         SERVER_CREDENTIALS = credentials ('jenkins-github-creds')
@@ -37,8 +34,7 @@ pipeline {
                     echo "We are Testing version ${VERSION}"
                     currentBuild.description = "Build #${env.BUILD_NUMBER} - Triggered by Jenkins Pipeline"
                     currentBuild.displayName = "#${env.BUILD_NUMBER} - #${env.GIT_COMMITTER_NAME}"
-                    /* sh "mvn install" */
-                    
+                                       
                 }
             }
         }
