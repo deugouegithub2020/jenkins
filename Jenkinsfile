@@ -1,7 +1,9 @@
 pipeline {
     agent any 
     parameters {
-        choice: (Name: 'VERSION', choices:['1.2.0' , '1.3.0'], description: 'Choose the version to deploy')
+        choice (Name: 'VERSION', choices:['1.2.0' , '1.3.0'], description: 'Choose the version to deploy')
+    }
+
    environment {
         VERSION = "1.3.0"
         SERVER_CREDENTIALS = credentials ('github-jenkins-creds')
