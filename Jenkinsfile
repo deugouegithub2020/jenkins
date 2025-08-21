@@ -1,4 +1,5 @@
-agent any 
+pipeline {
+    agent any 
 
     parameters {
         choice(name: 'VERSION', choices: ['1.2.0', '1.3.0'], description: 'Choose the version to deploy')
