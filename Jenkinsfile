@@ -32,7 +32,9 @@ pipeline {
                 sh 'ls -ltra'
                 sh 'rm -rf serges && mkdir -p serges'
                 // Use Jenkins built-in git step (cleaner than manual git clone)
-                git branch: 'dev', url: 'https://github.com/deugouegithub2020/jenkins.git', credentialsId: 'github-jenkins-creds'
+                dir('serges') {
+                    git branch: 'dev', url: 'https://github.com/deugouegithub2020/jenkins.git', credentialsId: 'github-jenkins-creds'
+                }
             }
         }
         
