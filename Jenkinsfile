@@ -11,7 +11,7 @@ pipeline {
     }
 
     stages {
-        stage("checkout") {
+        /* stage("checkout") {
             steps {
                 sh 'pwd'
                 sh 'ls -ltra'
@@ -24,7 +24,18 @@ pipeline {
                     sh 'git clone -b dev https://${GIT_USER}:${GIT_PASS}@github.com/deugouegithub2020/jenkins.git serges'
                 }
             }
+        } */
+
+        stage("checkout") {
+            steps {
+                sh 'pwd'
+                sh 'ls -ltra'
+                sh 'rm -rf serges && mkdir -p serges'
+                // Use Jenkins built-in git step (cleaner than manual git clone)
+                git branch: 'dev', url: 'https://github.com/deugouegithub2020/jenkins.git', credentialsId: 'github-jenkins-creds'
+            }
         }
+        
 
         stage("build") {
             when {
