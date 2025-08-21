@@ -1,25 +1,19 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
+        stage('Build') {
             steps {
-                git branch: 'dev',
-                    url: 'https://github.com/deugouegithub2020/jenkins.git',
-                    credentialsId: 'github-jenkins-creds'
+                script {
+                    // Example step
+                    sh 'echo "Building..."'
+                }
             }
         }
     }
-
     post {
-        always {
-           echo "just ran the first pipeline"
-        }
         success {
-           echo "the build #${env.BUILD_NUMBER} ran successfully. It was committed by #${env.GIT_COMMITTER_NAME}"
+            githubNotify context: 'CI/CD', description: 'Build passed', status: 'SUCCESS'
         }
         failure {
-            echo "the pipeline failed"
+            githubNotify context: 'CI/CD', description: 'Build failed', status: 'FAILURE'
         }
-    }
-}
-   
