@@ -1,6 +1,8 @@
 pipeline {
     agent any 
-    environment {
+    parameters {
+        choice: (Name: 'VERSION', choices:['1.2.0' , '1.3.0'], description: 'Choose the version to deploy')
+   environment {
         VERSION = "1.3.0"
         SERVER_CREDENTIALS = credentials ('github-jenkins-creds')
     }
@@ -31,14 +33,13 @@ pipeline {
             steps {
                 script {
                     /* echo "Testing with ${SERVER_CREDENTIALS}" */
-                    echo "We are Testing version ${VERSION}"
+                    echo "We are Testing version ${params.VERSION}"
                     currentBuild.description = "Build #${env.BUILD_NUMBER} - Triggered by Jenkins Pipeline"
                     currentBuild.displayName = "#${env.BUILD_NUMBER} - #${env.GIT_COMMITTER_NAME}"
                                        
                 }
             }
-        }
-        stage ("deploy") {
+        }        stage ("deploy") {
             steps {
                 echo "deploying application"
             }
