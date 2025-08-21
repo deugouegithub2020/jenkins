@@ -5,8 +5,8 @@ pipeline {
     }
 
    environment {
-        VERSION = "1.3.0"
-        SERVER_CREDENTIALS = credentials ('github-jenkins-creds')
+         /* VERSION = "1.3.0"
+        SERVER_CREDENTIALS = credentials ('github-jenkins-creds') */
     }
     stages {
         stage ("checkout") {
