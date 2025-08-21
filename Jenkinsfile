@@ -1,63 +1,25 @@
 pipeline {
-    agent any 
-    /* tools {
-        maven 'Maven'
-    } */
-    environment {
-        VERSION = "1.3.0"
-        SERVER_CREDENTIALS = credentials ('deugoue_jenkins')
-    }
+    agent any
     stages {
-        stage ("checkout") {
+        stage('Checkout') {
             steps {
-                sh 'pwd'
-                sh 'ls -ltra'
-                sh 'rm -rf serges && mkdir -p serges'
-                withCredentials([usernamePassword(credentialsId: 'deugouegithub2020', 
-                                                 usernameVariable: 'GIT_USER', 
-                                                 passwordVariable: 'GIT_PASS')]) {
-                    sh 'git clone -b dev https://${GIT_USER}:${GIT_PASS}@github.com/deugouegithub2020/jenkins.git serges'
-                }
+                git branch: 'dev',
+                    url: 'https://github.com/deugouegithub2020/jenkins.git',
+                    credentialsId: 'github-jenkins-creds'
             }
         }
-        stage ("build") {
-            when {
-                expression {
-                    BRANCH_NAME == 'pr'
-                }
-            }
-            steps {
-                echo "building application"
-            }
+    }
+
+    post {
+        always {
+           echo "just ran the first pipeline"
         }
-        stage ("test") {
-            steps {
-                script {
-                    /* echo "Testing with ${SERVER_CREDENTIALS}" */
-                    echo "We are Testing version ${VERSION}"
-                    currentBuild.description = "Build #${env.BUILD_NUMBER} - Triggered by Jenkins Pipeline"
-                    currentBuild.displayName = "#${env.BUILD_NUMBER} - #${env.GIT_COMMITTER_NAME}"
-                    /* sh "mvn install" */
-                    
-                }
-            }
+        success {
+           echo "the build #${env.BUILD_NUMBER} ran successfully. It was committed by #${env.GIT_COMMITTER_NAME}"
         }
-        stage ("deploy") {
-            steps {
-                echo "deploying application"
-            }
+        failure {
+            echo "the pipeline failed"
         }
-   }
-        post {
-            always {
-                echo "just ran the first pipeline"
-            }
-            success {
-                echo "the build #${env.BUILD_NUMBER} ran successfully. It was committed by #${env.GIT_COMMITTER_NAME}"
-            }
-            failure {
-                echo "the pipeline failed"
-            }
-        }
+    }
 }
    
